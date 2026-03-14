@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Primary Meta Tags -->
+    <title>Blake Simkins - Design Playground | Experimental UI & Interactions</title>
+    <meta name="title" content="Blake Simkins - Design Playground | Experimental UI & Interactions">
+    <meta name="description" content="A collection of experimental UI designs and interactions by Blake Simkins. Exploring new design patterns, animations, and user experiences.">
+    <meta name="keywords" content="Blake Simkins, design playground, experimental UI, interaction design, UI experiments, design prototypes, UX explorations">
+    <meta name="author" content="Blake Simkins">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://blakesimkins.github.io/playground.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://blakesimkins.github.io/playground.html">
+    <meta property="og:title" content="Blake Simkins - Design Playground">
+    <meta property="og:description" content="A collection of experimental UI designs and interactions exploring new design patterns, animations, and user experiences.">
+    <meta property="og:image" content="https://blakesimkins.github.io/imgs/blake-simkins.png">
+    <meta property="og:site_name" content="Blake Simkins">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://blakesimkins.github.io/playground.html">
+    <meta property="twitter:title" content="Blake Simkins - Design Playground">
+    <meta property="twitter:description" content="A collection of experimental UI designs and interactions exploring new design patterns, animations, and user experiences.">
+    <meta property="twitter:image" content="https://blakesimkins.github.io/imgs/blake-simkins.png">
+    <meta property="twitter:creator" content="@blakesimkins">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/imgs/blake-simkins.png">
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-fade-in-down {
+        animation: fadeInDown 0.6s ease-out forwards;
+        opacity: 0;
+      }
+
+      .animate-fade-in-up {
+        animation: fadeInUp 0.6s ease-out forwards;
+        opacity: 0;
+      }
+
+      .delay-0 {
+        animation-delay: 0s;
+      }
+
+      .delay-150 {
+        animation-delay: 0.15s;
+      }
+
+      .delay-200 {
+        animation-delay: 0.2s;
+      }
+
+      .delay-250 {
+        animation-delay: 0.25s;
+      }
+
+      .delay-300 {
+        animation-delay: 0.3s;
+      }
+
+      .delay-350 {
+        animation-delay: 0.35s;
+      }
+
+      .delay-400 {
+        animation-delay: 0.4s;
+      }
+
+      .delay-450 {
+        animation-delay: 0.45s;
+      }
+
+      .experiment-nav {
+        color: rgba(0, 0, 0, 0.6);
+      }
+
+      .experiment-nav:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+        color: rgba(0, 0, 0, 0.9);
+      }
+
+      .experiment-nav.active {
+        background-color: rgba(0, 0, 0, 0.1);
+        color: #000;
+      }
+
+      @media (max-width: 768px) {
+        .flex {
+          flex-direction: column;
+        }
+        aside {
+          width: 100%;
+          border-right: none;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-white antialiased">
+    <div class="flex min-h-screen">
+      <!-- Sidebar Navigation -->
+      <aside class="w-64 border-r border-gray-200 p-8 space-y-8 animate-fade-in-down delay-0">
+        <div class="space-y-6">
+          <a href="/" class="inline-block text-base text-black hover:underline transition-colors" aria-label="Return to Blake Simkins home page">
+            ← Back to Home
+          </a>
+
+          <div>
+            <h1 class="text-2xl font-bold text-black mb-2">Playground</h1>
+            <p class="text-sm text-black/60">Experimental UI & Interactions</p>
+          </div>
+        </div>
+
+        <nav class="space-y-1" aria-label="Experiment navigation">
+          <button onclick="showExperiment(1)" class="experiment-nav w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-colors active" data-experiment="1" aria-label="View Experiment 01">
+            Experiment 01
+          </button>
+          <button onclick="showExperiment(2)" class="experiment-nav w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-colors" data-experiment="2" aria-label="View Experiment 02">
+            Experiment 02
+          </button>
+          <button onclick="showExperiment(3)" class="experiment-nav w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-colors" data-experiment="3" aria-label="View Experiment 03">
+            Experiment 03
+          </button>
+          <button onclick="showExperiment(4)" class="experiment-nav w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-colors" data-experiment="4" aria-label="View Experiment 04">
+            Experiment 04
+          </button>
+          <button onclick="showExperiment(5)" class="experiment-nav w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-colors" data-experiment="5" aria-label="View Experiment 05">
+            Experiment 05
+          </button>
+          <button onclick="showExperiment(6)" class="experiment-nav w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-colors" data-experiment="6" aria-label="View Experiment 06">
+            Experiment 06
+          </button>
+        </nav>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="flex-1 p-8 md:p-16">
+        <!-- Experiment 01 -->
+        <article id="experiment-1" class="experiment-content animate-fade-in-up delay-150">
+          <div class="max-w-4xl space-y-8">
+            <div class="space-y-4">
+              <h2 class="text-4xl md:text-5xl font-bold text-black">Experiment 01</h2>
+              <p class="text-lg md:text-xl text-black/90 leading-relaxed">
+                Exploring fluid motion patterns and micro-interactions for enhanced user engagement.
+              </p>
+            </div>
+
+            <div class="aspect-video bg-gradient-to-br from-purple-400 to-indigo-600 rounded-lg"></div>
+
+            <div class="space-y-4">
+              <h3 class="text-xl font-semibold text-black">About this experiment</h3>
+              <p class="text-base text-black/80 leading-relaxed">
+                This exploration focuses on creating delightful micro-interactions that respond to user input with fluid, natural motion. The goal is to enhance engagement while maintaining performance and accessibility.
+              </p>
+              <div class="inline-block px-4 py-2 text-sm font-medium text-black/60 bg-gray-100 rounded-full">
+                Coming Soon
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Experiment 02 -->
+        <article id="experiment-2" class="experiment-content hidden">
+          <div class="max-w-4xl space-y-8">
+            <div class="space-y-4">
+              <h2 class="text-4xl md:text-5xl font-bold text-black">Experiment 02</h2>
+              <p class="text-lg md:text-xl text-black/90 leading-relaxed">
+                Innovative data visualization techniques for complex information architectures.
+              </p>
+            </div>
+
+            <div class="aspect-video bg-gradient-to-br from-pink-400 to-rose-600 rounded-lg"></div>
+
+            <div class="space-y-4">
+              <h3 class="text-xl font-semibold text-black">About this experiment</h3>
+              <p class="text-base text-black/80 leading-relaxed">
+                Exploring new ways to visualize complex data sets and information hierarchies. This experiment investigates interactive chart patterns and novel approaches to making data more accessible and understandable.
+              </p>
+              <div class="inline-block px-4 py-2 text-sm font-medium text-black/60 bg-gray-100 rounded-full">
+                Coming Soon
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Experiment 03 -->
+        <article id="experiment-3" class="experiment-content hidden">
+          <div class="max-w-4xl space-y-8">
+            <div class="space-y-4">
+              <h2 class="text-4xl md:text-5xl font-bold text-black">Experiment 03</h2>
+              <p class="text-lg md:text-xl text-black/90 leading-relaxed">
+                Adaptive layouts that respond intelligently to user context and preferences.
+              </p>
+            </div>
+
+            <div class="aspect-video bg-gradient-to-br from-cyan-400 to-blue-600 rounded-lg"></div>
+
+            <div class="space-y-4">
+              <h3 class="text-xl font-semibold text-black">About this experiment</h3>
+              <p class="text-base text-black/80 leading-relaxed">
+                Testing intelligent layout systems that adapt based on user behavior, device capabilities, and contextual signals. The focus is on creating truly responsive experiences that go beyond traditional breakpoints.
+              </p>
+              <div class="inline-block px-4 py-2 text-sm font-medium text-black/60 bg-gray-100 rounded-full">
+                Coming Soon
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Experiment 04 -->
+        <article id="experiment-4" class="experiment-content hidden">
+          <div class="max-w-4xl space-y-8">
+            <div class="space-y-4">
+              <h2 class="text-4xl md:text-5xl font-bold text-black">Experiment 04</h2>
+              <p class="text-lg md:text-xl text-black/90 leading-relaxed">
+                Gestural interfaces and touch-optimized interactions for mobile experiences.
+              </p>
+            </div>
+
+            <div class="aspect-video bg-gradient-to-br from-amber-400 to-orange-600 rounded-lg"></div>
+
+            <div class="space-y-4">
+              <h3 class="text-xl font-semibold text-black">About this experiment</h3>
+              <p class="text-base text-black/80 leading-relaxed">
+                Investigating natural gesture patterns and touch-first interaction models. This experiment explores how to create mobile experiences that feel intuitive and take full advantage of touch capabilities.
+              </p>
+              <div class="inline-block px-4 py-2 text-sm font-medium text-black/60 bg-gray-100 rounded-full">
+                Coming Soon
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Experiment 05 -->
+        <article id="experiment-5" class="experiment-content hidden">
+          <div class="max-w-4xl space-y-8">
+            <div class="space-y-4">
+              <h2 class="text-4xl md:text-5xl font-bold text-black">Experiment 05</h2>
+              <p class="text-lg md:text-xl text-black/90 leading-relaxed">
+                Accessibility-first design patterns that enhance usability for all users.
+              </p>
+            </div>
+
+            <div class="aspect-video bg-gradient-to-br from-emerald-400 to-teal-600 rounded-lg"></div>
+
+            <div class="space-y-4">
+              <h3 class="text-xl font-semibold text-black">About this experiment</h3>
+              <p class="text-base text-black/80 leading-relaxed">
+                Developing inclusive design patterns that prioritize accessibility while creating delightful experiences for everyone. This experiment proves that accessible design can be beautiful and engaging.
+              </p>
+              <div class="inline-block px-4 py-2 text-sm font-medium text-black/60 bg-gray-100 rounded-full">
+                Coming Soon
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Experiment 06 -->
+        <article id="experiment-6" class="experiment-content hidden">
+          <div class="max-w-4xl space-y-8">
+            <div class="space-y-4">
+              <h2 class="text-4xl md:text-5xl font-bold text-black">Experiment 06</h2>
+              <p class="text-lg md:text-xl text-black/90 leading-relaxed">
+                Experimental typography and dynamic text layouts for enhanced readability.
+              </p>
+            </div>
+
+            <div class="aspect-video bg-gradient-to-br from-violet-400 to-purple-600 rounded-lg"></div>
+
+            <div class="space-y-4">
+              <h3 class="text-xl font-semibold text-black">About this experiment</h3>
+              <p class="text-base text-black/80 leading-relaxed">
+                Pushing the boundaries of web typography through dynamic scaling, responsive type systems, and innovative text layout techniques. This experiment explores how typography can adapt to enhance readability across all contexts.
+              </p>
+              <div class="inline-block px-4 py-2 text-sm font-medium text-black/60 bg-gray-100 rounded-full">
+                Coming Soon
+              </div>
+            </div>
+          </div>
+        </article>
+      </main>
+    </div>
+
+    <script>
+      function showExperiment(num) {
+        // Hide all experiments
+        document.querySelectorAll('.experiment-content').forEach(el => {
+          el.classList.add('hidden');
+        });
+
+        // Remove active state from all nav items
+        document.querySelectorAll('.experiment-nav').forEach(el => {
+          el.classList.remove('active');
+        });
+
+        // Show selected experiment
+        document.getElementById('experiment-' + num).classList.remove('hidden');
+
+        // Add active state to clicked nav item
+        document.querySelector(`[data-experiment="${num}"]`).classList.add('active');
+      }
+    </script>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "Blake Simkins - Design Playground",
+      "description": "A collection of experimental UI designs and interactions exploring new design patterns, animations, and user experiences.",
+      "url": "https://blakesimkins.github.io/playground.html",
+      "author": {
+        "@type": "Person",
+        "name": "Blake Simkins",
+        "jobTitle": "Product Design Leader & Design Architect",
+        "url": "https://blakesimkins.github.io",
+        "sameAs": [
+          "https://www.linkedin.com/in/blakesimkins/"
+        ]
+      },
+      "keywords": [
+        "UI Design",
+        "Interaction Design",
+        "Experimental Design",
+        "User Experience",
+        "Design Prototypes"
+      ]
+    }
+    </script>
+  </body>
+</html>
