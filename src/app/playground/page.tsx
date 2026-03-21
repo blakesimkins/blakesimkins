@@ -19,10 +19,10 @@ export default function PlaygroundPage() {
           <h1 className="text-2xl font-bold text-black">Playground</h1>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
           {/* Search & Select */}
-          <div className="bg-white rounded-2xl shadow-lg p-8 flex items-start">
+          <div className="bg-white rounded-2xl shadow-lg p-8 h-[480px] overflow-visible">
             <SearchSelect />
           </div>
 
@@ -30,7 +30,7 @@ export default function PlaygroundPage() {
           {placeholders.map((label) => (
             <div
               key={label}
-              className="bg-white rounded-2xl shadow-lg aspect-square flex items-center justify-center"
+              className="bg-white rounded-2xl shadow-lg h-[480px] flex items-center justify-center"
             >
               <span className="text-sm font-medium text-black/20">{label}</span>
             </div>
