@@ -159,18 +159,6 @@
 .delay-400 { animation-delay: 0.4s; }
 .delay-450 { animation-delay: 0.45s; }
 
-/* ── Playground sidebar nav ─────────────────────────────────────────────── */
-.experiment-nav {
-  color: rgba(0, 0, 0, 0.6);
-}
-.experiment-nav:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-  color: rgba(0, 0, 0, 0.9);
-}
-.experiment-nav.active {
-  background-color: rgba(0, 0, 0, 0.1);
-  color: #000;
-}
 
 /* ── Snowflake Creator ──────────────────────────────────────────────────── */
 .snowflake-container {

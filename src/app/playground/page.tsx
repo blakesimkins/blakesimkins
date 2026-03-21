@@ -1,5 +1,54 @@
-import { redirect } from "next/navigation";
+import Link from "next/link";
+import SnowflakeCreator from "@/components/experiments/SnowflakeCreator";
+import SearchSelect from "@/components/experiments/SearchSelect";
+
+export const metadata = {
+  title: "Blake Simkins - Playground",
+};
+
+const placeholders = [
+  { label: "03" },
+  { label: "04" },
+  { label: "05" },
+  { label: "06" },
+];
 
 export default function PlaygroundPage() {
-  redirect("/playground/snowflake-creator");
+  return (
+    <main className="min-h-screen px-8 py-16">
+      <div className="max-w-6xl mx-auto space-y-12">
+
+        <div className="flex items-baseline gap-8">
+          <Link href="/" className="text-sm text-black/50 hover:text-black transition-colors">
+            ← Back
+          </Link>
+          <h1 className="text-2xl font-bold text-black">Playground</h1>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          {/* Snowflake Creator */}
+          <div className="bg-white rounded-2xl shadow-lg p-8">
+            <SnowflakeCreator />
+          </div>
+
+          {/* Search & Select */}
+          <div className="bg-white rounded-2xl shadow-lg p-8 flex items-start">
+            <SearchSelect />
+          </div>
+
+          {/* Coming soon placeholders */}
+          {placeholders.map(({ label }) => (
+            <div
+              key={label}
+              className="bg-white rounded-2xl shadow-lg aspect-square flex items-center justify-center"
+            >
+              <span className="text-sm font-medium text-black/20">{label}</span>
+            </div>
+          ))}
+
+        </div>
+      </div>
+    </main>
+  );
 }
