@@ -74,7 +74,7 @@ export default function SearchSelect() {
   return (
     <div
       ref={containerRef}
-      className="bg-white border border-zinc-200 rounded-lg p-8 shadow-sm max-w-lg transition-colors hover:border-zinc-400"
+      className="bg-white border border-zinc-200 rounded-lg p-8 shadow-sm w-full transition-colors hover:border-zinc-400"
       onBlur={(e) => {
         if (!containerRef.current?.contains(e.relatedTarget as Node)) {
           setOpen(false);
@@ -145,28 +145,28 @@ export default function SearchSelect() {
               className="w-full h-10 border border-zinc-200 rounded-lg bg-white px-3 py-2 text-sm text-zinc-900 placeholder:text-zinc-400 outline-none focus:border-zinc-400 focus:ring-2 focus:ring-zinc-100 transition-all"
               aria-label="Search for technicians"
             />
-          </div>
 
-          {open && (
-            <div className="absolute left-0 right-0 top-[calc(100%+4px)] z-10 bg-white border border-zinc-200 rounded-lg shadow-md overflow-hidden">
-              <CommandList className="py-1 max-h-64">
-                <CommandEmpty className="px-3 py-6 text-center text-sm text-zinc-400">
-                  No results found
-                </CommandEmpty>
-                {available.map((person) => (
-                  <CommandItem
-                    key={person.id}
-                    value={person.name}
-                    onSelect={addPerson}
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-none cursor-pointer text-sm text-zinc-900 aria-selected:bg-zinc-50 [&_svg:last-child]:hidden"
-                  >
-                    <Avatar person={person} />
-                    <span>{person.name}</span>
-                  </CommandItem>
-                ))}
-              </CommandList>
-            </div>
-          )}
+            {open && (
+              <div className="absolute left-0 right-0 top-[calc(100%+4px)] z-10 bg-white border border-zinc-200 rounded-lg shadow-md overflow-hidden">
+                <CommandList className="py-1 max-h-64">
+                  <CommandEmpty className="px-3 py-6 text-center text-sm text-zinc-400">
+                    No results found
+                  </CommandEmpty>
+                  {available.map((person) => (
+                    <CommandItem
+                      key={person.id}
+                      value={person.name}
+                      onSelect={addPerson}
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-none cursor-pointer text-sm text-zinc-900 aria-selected:bg-zinc-50 [&_svg:last-child]:hidden"
+                    >
+                      <Avatar person={person} />
+                      <span>{person.name}</span>
+                    </CommandItem>
+                  ))}
+                </CommandList>
+              </div>
+            )}
+          </div>
         </Command>
 
       </div>

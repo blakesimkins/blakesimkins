@@ -19,7 +19,7 @@ export default function PlaygroundPage() {
           <h1 className="text-2xl font-bold text-black">Playground</h1>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
 
           {/* Search & Select */}
           <div className="bg-white rounded-2xl shadow-lg p-8 flex items-start">
