@@ -1,17 +1,11 @@
 import Link from "next/link";
-import SnowflakeCreator from "@/components/experiments/SnowflakeCreator";
 import SearchSelect from "@/components/experiments/SearchSelect";
 
 export const metadata = {
   title: "Blake Simkins - Playground",
 };
 
-const placeholders = [
-  { label: "03" },
-  { label: "04" },
-  { label: "05" },
-  { label: "06" },
-];
+const placeholders = ["02", "03", "04", "05", "06"];
 
 export default function PlaygroundPage() {
   return (
@@ -27,18 +21,13 @@ export default function PlaygroundPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-          {/* Snowflake Creator */}
-          <div className="bg-white rounded-2xl shadow-lg p-8">
-            <SnowflakeCreator />
-          </div>
-
           {/* Search & Select */}
           <div className="bg-white rounded-2xl shadow-lg p-8 flex items-start">
             <SearchSelect />
           </div>
 
           {/* Coming soon placeholders */}
-          {placeholders.map(({ label }) => (
+          {placeholders.map((label) => (
             <div
               key={label}
               className="bg-white rounded-2xl shadow-lg aspect-square flex items-center justify-center"
