@@ -74,7 +74,7 @@ export default function SearchSelect() {
   return (
     <div
       ref={containerRef}
-      className="bg-white border border-zinc-200 rounded-lg p-8 shadow-sm w-full transition-colors hover:border-zinc-400"
+      className="w-full"
       onBlur={(e) => {
         if (!containerRef.current?.contains(e.relatedTarget as Node)) {
           setOpen(false);
