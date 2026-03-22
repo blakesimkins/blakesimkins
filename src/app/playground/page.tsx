@@ -12,7 +12,7 @@ export default function PlaygroundPage() {
     <main className="min-h-screen px-8 py-16 bg-zinc-100">
       <div className="max-w-6xl mx-auto space-y-12">
 
-        <div className="flex items-baseline gap-8">
+        <div className="space-y-2">
           <Link href="/" className="text-sm text-black/50 hover:text-black transition-colors">
             ← Back
           </Link>
