@@ -90,7 +90,7 @@ export default function SearchSelectSingle() {
                 ref={inputRef}
                 placeholder="Select Technician"
                 onFocus={() => setOpen(true)}
-                onClick={() => setOpen(true)}
+                onClick={(e) => { setOpen(true); e.currentTarget.select(); }}
                 onKeyDown={(e) => {
                   if (e.key === "Escape") setOpen(false);
                 }}
