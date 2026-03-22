@@ -1,12 +1,13 @@
 import Link from "next/link";
 import SearchSelect from "@/components/experiments/SearchSelect";
 import SearchSelectTags from "@/components/experiments/SearchSelectTags";
+import SearchSelectSingle from "@/components/experiments/SearchSelectSingle";
 
 export const metadata = {
   title: "Blake Simkins - Playground",
 };
 
-const placeholders = ["03", "04", "05", "06"];
+const placeholders = ["04", "05", "06"];
 
 export default function PlaygroundPage() {
   return (
@@ -41,6 +42,17 @@ export default function PlaygroundPage() {
             <div>
               <p className="text-sm font-medium text-black">Search & Select — Tags</p>
               <p className="text-sm text-black/50">Selected technicians appear as tags inside the input field.</p>
+            </div>
+          </div>
+
+          {/* Card 3 — Search & Select (single) */}
+          <div className="space-y-3">
+            <div className="bg-zinc-100 rounded-2xl shadow-xs p-8 h-[480px] overflow-visible">
+              <SearchSelectSingle />
+            </div>
+            <div>
+              <p className="text-sm font-medium text-black">Search & Select — Single</p>
+              <p className="text-sm text-black/50">Single selection with live search. Selected state replaces the input.</p>
             </div>
           </div>
 
