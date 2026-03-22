@@ -1,0 +1,158 @@
+"use client";
+
+import { useState, useRef } from "react";
+import { Command as CommandPrimitive } from "cmdk";
+import {
+  Command,
+  CommandEmpty,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+
+interface Person {
+  id: number;
+  name: string;
+  color: string;
+}
+
+const people: Person[] = [
+  { id: 1, name: "Blake Simkins", color: "#6366f1" },
+  { id: 2, name: "Ricky Howard", color: "#0ea5e9" },
+  { id: 3, name: "Linda Michelle", color: "#f43f5e" },
+  { id: 4, name: "Milo Blake", color: "#10b981" },
+  { id: 5, name: "Kendall Jane", color: "#f59e0b" },
+  { id: 6, name: "Marcus Webb", color: "#8b5cf6" },
+  { id: 7, name: "Priya Nair", color: "#ec4899" },
+];
+
+function initials(name: string) {
+  return name.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase();
+}
+
+function Tag({ person, onRemove }: { person: Person; onRemove: () => void }) {
+  return (
+    <span className="inline-flex items-center gap-1 bg-zinc-100 border border-zinc-200 rounded-md pl-1 pr-1.5 py-0.5 text-xs font-medium text-zinc-800 shrink-0">
+      <span
+        className="w-4 h-4 rounded-[3px] flex items-center justify-center text-[9px] font-semibold text-white shrink-0"
+        style={{ background: person.color }}
+        aria-hidden="true"
+      >
+        {initials(person.name)}
+      </span>
+      {person.name}
+      <button
+        onMouseDown={(e) => e.preventDefault()}
+        onClick={onRemove}
+        className="ml-0.5 text-zinc-400 hover:text-zinc-700 transition-colors cursor-pointer"
+        aria-label={`Remove ${person.name}`}
+      >
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </span>
+  );
+}
+
+export default function SearchSelectTags() {
+  const [selected, setSelected] = useState<Person[]>([]);
+  const [open, setOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const available = people
+    .filter((p) => !selected.some((s) => s.id === p.id))
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  function addPerson(value: string) {
+    const person = people.find((p) => p.name === value);
+    if (!person || selected.some((s) => s.id === person.id)) return;
+    setSelected((prev) => [...prev, person]);
+    setOpen(true);
+    setTimeout(() => inputRef.current?.focus(), 0);
+  }
+
+  function removePerson(id: number) {
+    setSelected((prev) => prev.filter((p) => p.id !== id));
+    inputRef.current?.focus();
+  }
+
+  return (
+    <div
+      ref={containerRef}
+      className="w-full"
+      onBlur={(e) => {
+        if (!containerRef.current?.contains(e.relatedTarget as Node)) {
+          setOpen(false);
+        }
+      }}
+    >
+      <div className="space-y-1.5">
+        <p className="text-sm font-medium text-zinc-900">Technicians</p>
+
+        <Command className="overflow-visible bg-transparent p-0 h-auto border-none shadow-none">
+          <div className="relative">
+            {/* Tag input container */}
+            <div
+              className="flex flex-wrap items-center gap-1.5 min-h-10 w-full border border-zinc-200 rounded-lg bg-white px-3 py-2 cursor-text focus-within:border-zinc-400 focus-within:ring-2 focus-within:ring-zinc-100 transition-all"
+              onClick={() => inputRef.current?.focus()}
+            >
+              {selected.map((person) => (
+                <Tag
+                  key={person.id}
+                  person={person}
+                  onRemove={() => removePerson(person.id)}
+                />
+              ))}
+              <CommandPrimitive.Input
+                ref={inputRef}
+                placeholder={selected.length === 0 ? "Add Technicians" : ""}
+                onFocus={() => setOpen(true)}
+                onKeyDown={(e) => {
+                  if (e.key === "Escape") setOpen(false);
+                  if (
+                    e.key === "Backspace" &&
+                    e.currentTarget.value === "" &&
+                    selected.length > 0
+                  ) {
+                    removePerson(selected[selected.length - 1].id);
+                  }
+                }}
+                className="flex-1 min-w-[120px] h-5 bg-transparent text-sm text-zinc-900 placeholder:text-zinc-400 outline-none"
+                aria-label="Search for technicians"
+              />
+            </div>
+
+            {/* Dropdown */}
+            {open && (
+              <div className="absolute left-0 right-0 top-[calc(100%+4px)] z-10 bg-white border border-zinc-200 rounded-lg shadow-md overflow-hidden">
+                <CommandList className="py-1 max-h-64">
+                  <CommandEmpty className="px-3 py-6 text-center text-sm text-zinc-400">
+                    No results found
+                  </CommandEmpty>
+                  {available.map((person) => (
+                    <CommandItem
+                      key={person.id}
+                      value={person.name}
+                      onSelect={addPerson}
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-none cursor-pointer text-sm text-zinc-900 aria-selected:bg-zinc-50 [&_svg:last-child]:hidden"
+                    >
+                      <span
+                        className="w-6 h-6 rounded-[6px] flex items-center justify-center text-xs font-medium text-white shrink-0"
+                        style={{ background: person.color }}
+                        aria-hidden="true"
+                      >
+                        {initials(person.name)}
+                      </span>
+                      <span>{person.name}</span>
+                    </CommandItem>
+                  ))}
+                </CommandList>
+              </div>
+            )}
+          </div>
+        </Command>
+      </div>
+    </div>
+  );
+}
