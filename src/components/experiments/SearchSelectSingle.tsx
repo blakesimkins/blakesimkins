@@ -89,8 +89,11 @@ export default function SearchSelectSingle() {
               <CommandPrimitive.Input
                 ref={inputRef}
                 placeholder="Select Technician"
-                onFocus={() => setOpen(true)}
-                onClick={(e) => { setOpen(true); e.currentTarget.select(); }}
+                onFocus={(e) => {
+                  setOpen(true);
+                  const target = e.currentTarget;
+                  setTimeout(() => target.select(), 0);
+                }}
                 onKeyDown={(e) => {
                   if (e.key === "Escape") setOpen(false);
                 }}
