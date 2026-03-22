@@ -9,7 +9,7 @@ const placeholders = ["02", "03", "04", "05", "06"];
 
 export default function PlaygroundPage() {
   return (
-    <main className="min-h-screen px-8 py-16 bg-zinc-100">
+    <main className="min-h-screen px-8 py-16 bg-white">
       <div className="max-w-6xl mx-auto space-y-12">
 
         <div className="space-y-2">
@@ -22,7 +22,7 @@ export default function PlaygroundPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
           {/* Search & Select */}
-          <div className="bg-white rounded-2xl shadow-xs p-8 h-[480px] overflow-visible">
+          <div className="bg-zinc-100 rounded-2xl shadow-xs p-8 h-[480px] overflow-visible">
             <SearchSelect />
           </div>
 
@@ -30,7 +30,7 @@ export default function PlaygroundPage() {
           {placeholders.map((label) => (
             <div
               key={label}
-              className="bg-white rounded-2xl shadow-xs h-[480px] flex items-center justify-center"
+              className="bg-zinc-100 rounded-2xl shadow-xs h-[480px] flex items-center justify-center"
             >
               <span className="text-sm font-medium text-black/20">{label}</span>
             </div>
