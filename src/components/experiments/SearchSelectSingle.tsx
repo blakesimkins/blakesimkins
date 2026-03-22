@@ -65,8 +65,11 @@ export default function SearchSelectSingle() {
           <div className="relative">
 
             {selected ? (
-              /* Selected state */
-              <div className="flex items-center gap-2.5 h-10 w-full border border-zinc-200 rounded-lg bg-white px-3 hover:border-zinc-400 transition-all">
+              /* Selected state — click anywhere to clear and re-search */
+              <div
+                className="flex items-center gap-2.5 h-10 w-full border border-zinc-200 rounded-lg bg-white px-3 hover:border-zinc-400 transition-all cursor-pointer"
+                onClick={clear}
+              >
                 <span
                   className="w-6 h-6 rounded-[6px] flex items-center justify-center text-xs font-medium text-white shrink-0"
                   style={{ background: selected.color }}
@@ -75,16 +78,11 @@ export default function SearchSelectSingle() {
                   {initials(selected.name)}
                 </span>
                 <span className="flex-1 text-sm text-zinc-900">{selected.name}</span>
-                <button
-                  onMouseDown={(e) => e.preventDefault()}
-                  onClick={clear}
-                  className="text-zinc-400 hover:text-zinc-700 transition-colors cursor-pointer"
-                  aria-label="Clear selection"
-                >
+                <span className="text-zinc-400">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
                   </svg>
-                </button>
+                </span>
               </div>
             ) : (
               /* Search input */
@@ -92,6 +90,7 @@ export default function SearchSelectSingle() {
                 ref={inputRef}
                 placeholder="Select Technician"
                 onFocus={() => setOpen(true)}
+                onClick={() => setOpen(true)}
                 onKeyDown={(e) => {
                   if (e.key === "Escape") setOpen(false);
                 }}
