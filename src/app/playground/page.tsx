@@ -9,7 +9,7 @@ const placeholders = ["02", "03", "04", "05", "06"];
 
 export default function PlaygroundPage() {
   return (
-    <main className="min-h-screen px-8 py-16">
+    <main className="min-h-screen px-8 py-16 bg-zinc-100">
       <div className="max-w-6xl mx-auto space-y-12">
 
         <div className="flex items-baseline gap-8">
